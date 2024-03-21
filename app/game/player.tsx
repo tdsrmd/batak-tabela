@@ -1,6 +1,6 @@
 "use client";
+import PlayersContext from "@/context/PlayerContext";
 import { createContext, useContext, useState } from "react";
-import { PlayersContext } from "./page";
 
 const Context = createContext<{
   data: { name: string; score: number[] };

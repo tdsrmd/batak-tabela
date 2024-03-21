@@ -1,15 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Player from "./player";
-
-export const PlayersContext = createContext<{
-  players: { name: string; score: number[] }[];
-  setPlayers: React.Dispatch<
-    React.SetStateAction<{ name: string; score: number[] }[]>
-  >;
-} | null>(null);
+import PlayersContext from "@/context/PlayerContext";
 
 export default function Game() {
   const [players, setPlayers] = useState<{ name: string; score: number[] }[]>(
