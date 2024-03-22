@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./global.css";
+import { GeistSans } from "geist/font/sans";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./global.css";
+import { PlayersContext } from "@/context/PlayersContext";
 
 export const metadata: Metadata = {
   title: "Batak Tabela",
@@ -15,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="tr">
+      <body className={GeistSans.className}>
+        <PlayersContext>{children}</PlayersContext>
+      </body>
     </html>
   );
 }
