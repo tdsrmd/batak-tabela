@@ -1,7 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
+import { useCallback, useState } from "react";
 
 import { usePlayers } from "@/context/PlayersContext";
 
@@ -12,7 +11,7 @@ import Input from "./components/input";
 import HomeHeader from "./components/header";
 
 export default function Home() {
-  const { players, setPlayers, addPlayer } = usePlayers();
+  const { players, addPlayer } = usePlayers();
   const [playerName, setPlayerName] = useState<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -26,17 +25,6 @@ export default function Home() {
       }
     },
     [playerName, players]
-  );
-
-  const handleRemovePlayer = useCallback(
-    (id: string) => {
-      return () => {
-        setPlayers((prevPlayers) =>
-          prevPlayers.filter((player) => player.id !== id)
-        );
-      };
-    },
-    [players]
   );
 
   return (

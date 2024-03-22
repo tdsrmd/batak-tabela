@@ -31,8 +31,8 @@ export const PlayersContext = ({
   };
 
   const handleFinishGame = () => {
-    localStorage.removeItem("players");
     setPlayers([]);
+    localStorage.removeItem("players");
   };
 
   const handleResetScores = () => {
