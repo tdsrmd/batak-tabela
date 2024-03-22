@@ -7,22 +7,25 @@ import { usePlayers } from "@/context/PlayersContext";
 import NumberPalet from "./number-palet";
 
 export default function Player({ data: player }: { data: PlayerProps }) {
-  const { players, setPlayers } = usePlayers();
+  const { players, setPlayers, setPlayersLocalStorage } = usePlayers();
   const [showPalet, setShowPalet] = useState<boolean>(false);
   const totalScore = player.score.reduce((acc, curr) => acc + curr, 0);
 
-  const handleRemoveScore = () => {
-    const updatedPlayers = players.map((player) => {
-      if (player.name === player.name) {
-        return {
-          ...player,
-          score: player.score.slice(0, -1),
-        };
-      }
-      return player;
-    });
-    setPlayers(updatedPlayers);
-    localStorage.setItem("players", JSON.stringify(updatedPlayers));
+  const handleRemoveScore = (index) => {
+    return () => {
+      const updatedPlayers = players.map((p) => {
+        if (p.id === player.id) {
+          return {
+            ...p,
+            score: p.score.filter((_, i) => i !== index),
+          };
+        }
+        return p;
+      });
+
+      setPlayers(updatedPlayers);
+      setPlayersLocalStorage(updatedPlayers);
+    };
   };
 
   return (
@@ -43,7 +46,7 @@ export default function Player({ data: player }: { data: PlayerProps }) {
               </div>
               <p
                 className="absolute top-1/2 -translate-y-1/2 -right-5 cursor-pointer"
-                onClick={handleRemoveScore}
+                onClick={handleRemoveScore(index)}
               >
                 <CancelIcon className="w-4 h-4 text-blue-400" />
               </p>

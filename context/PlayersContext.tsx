@@ -73,6 +73,7 @@ export const PlayersContext = ({
     handleFinishGame,
     handleResetScores,
     addScore,
+    setPlayersLocalStorage,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
