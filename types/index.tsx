@@ -22,4 +22,5 @@ type PlayersContextProps = {
   addScore: (value: number, playerId: string) => void;
   setNegativeValue: React.Dispatch<React.SetStateAction<boolean>>;
   negativeValue: boolean;
+  removeScore: (playerId: string, index: number) => void;
 };

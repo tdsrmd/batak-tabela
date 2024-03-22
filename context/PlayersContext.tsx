@@ -56,6 +56,21 @@ export const PlayersContext = ({
     setPlayersLocalStorage(updatedPlayers);
   };
 
+  const removeScore = (playerId: string, index: number) => {
+    const updatedPlayers = players.map((player) => {
+      if (player.id === playerId) {
+        return {
+          ...player,
+          score: player.score.filter((_, i) => i !== index),
+        };
+      }
+      return player;
+    });
+
+    setPlayers(updatedPlayers);
+    setPlayersLocalStorage(updatedPlayers);
+  };
+
   useLayoutEffect(() => {
     const isPlayers = playersLocalStorage.length;
     if (isPlayers) {
@@ -73,7 +88,7 @@ export const PlayersContext = ({
     handleFinishGame,
     handleResetScores,
     addScore,
-    setPlayersLocalStorage,
+    removeScore,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
