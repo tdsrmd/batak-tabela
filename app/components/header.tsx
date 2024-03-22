@@ -1,6 +1,7 @@
+import { memo } from "react";
 import SparkAnimate from "./spark-animate";
 
-export default function HomeHeader() {
+const HomeHeader = () => {
   return (
     <>
       <div className="w-full flex flex-col items-center justify-center overflow-hidden rounded-md">
@@ -14,4 +15,6 @@ export default function HomeHeader() {
       </p>
     </>
   );
-}
+};
+
+export default memo(HomeHeader);
